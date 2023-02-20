@@ -48,4 +48,5 @@ output "custom_role_url" {
 resource "google_project_iam_member" "sa2_can_create_workspaces" {
   role   = google_project_iam_custom_role.workspace_creator.id
   member = "serviceAccount:${google_service_account.sa2.email}"
+  project = var.project  
 }
