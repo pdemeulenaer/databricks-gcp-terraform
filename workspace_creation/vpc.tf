@@ -1,3 +1,5 @@
+# Read the official documentation at https://docs.gcp.databricks.com/administration-guide/cloud-configurations/gcp/customer-managed-vpc.html
+
 resource "google_compute_network" "dbx_private_vpc" {
   project                 = var.google_project
   name                    = "tf-network-${random_string.suffix.result}"
@@ -7,7 +9,7 @@ resource "google_compute_network" "dbx_private_vpc" {
 resource "google_compute_subnetwork" "network-with-private-secondary-ip-ranges" {
   name          = "test-dbx-${random_string.suffix.result}"
   ip_cidr_range = "10.0.0.0/16"
-  region        = "us-central1"
+  region        = var.google_region #"us-central1"
   network       = google_compute_network.dbx_private_vpc.id
   secondary_ip_range {
     range_name    = "pods"
