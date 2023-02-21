@@ -23,7 +23,7 @@ provider "google" {
   zone    = var.google_zone
 }
 
-# Provider defined at Databricks ACCOUNT level
+# Provider defined at Databricks Account level
 provider "databricks" {
   alias                  = "accounts"
   host                   = "https://accounts.gcp.databricks.com"
@@ -31,15 +31,11 @@ provider "databricks" {
   account_id             = var.databricks_account_id
 }
 
-# Provider defined at Databricks WORKSPACE level
-provider "databricks" {
-  alias                  = "workspace"
-  host                   = databricks_mws_workspaces.this.workspace_url
-  google_service_account = var.databricks_google_service_account
+data "google_client_openid_userinfo" "me" {
 }
 
-data "google_client_openid_userinfo" "me" {}
-data "google_client_config" "current" {}
+data "google_client_config" "current" {
+}
 
 resource "random_string" "suffix" {
   special = false
