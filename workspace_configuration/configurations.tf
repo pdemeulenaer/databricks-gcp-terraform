@@ -4,9 +4,9 @@ resource "databricks_instance_pool" "dev_pool" {
   instance_pool_name = "Smallest Nodes (${data.databricks_current_user.me.alphanumeric})" #"Smallest Nodes (${var.current_user_alphanumeric})" #
   min_idle_instances = 0
   max_capacity       = 10
-  node_type_id       = data.databricks_node_type.smallest.id # var.node_type_id # 
+  node_type_id       = "n1-standard-4" #data.databricks_node_type.smallest.id # var.node_type_id # 
   preloaded_spark_versions = [
-    var.spark_version_id # data.databricks_spark_version.latest.id
+    data.databricks_spark_version.latest.id #var.spark_version_id # 
   ]
 
   idle_instance_autotermination_minutes = 20

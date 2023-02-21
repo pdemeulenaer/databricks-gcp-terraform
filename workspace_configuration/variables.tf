@@ -12,6 +12,6 @@ variable "github_token" {
   description = "personal access token from GitHub"
 }
 
-variable "git_repo" {
+variable "git_repo_template" {
   description = "any git repo needed in the infrastructure"
 }
